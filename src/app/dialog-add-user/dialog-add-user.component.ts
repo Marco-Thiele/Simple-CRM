@@ -6,6 +6,10 @@ import { Observable } from 'rxjs';
 import { addDoc } from 'firebase/firestore';
 import { getFirestore } from "firebase/firestore";
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
+import { MatDialogRef } from '@angular/material/dialog';
+//import {MatDialogModule} from '@angular/material/dialog';
+
+
 
 @Component({
   selector: 'app-dialog-add-user',
@@ -15,36 +19,36 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/comp
 export class DialogAddUserComponent {
   user: User = new User();
   birthdate: Date | undefined;
-  //item$: Observable<any[]>
+  loading: boolean = false;
+  item$: Observable<any[]>
   firestore: Firestore = inject(Firestore);
   //items;
 
-  constructor() {
-    // const itemCollection = collection(this.firestore, 'users');
-    //  this.item$ = collectionData(itemCollection);
+  constructor(public dialogRef: MatDialogRef<DialogAddUserComponent>) {
+     const itemCollection = collection(this.firestore, 'users');
+     this.item$ = collectionData(itemCollection);
     //  this.items = this.item$.subscribe((list) => {
     //    list.forEach(element => {
     //      console.log(element)
     //    });
     //  })
-
+    
   }
 
-  onNoClick(){
-
-  }
-
-
+  
   async saveUser() {
     this.user.birthDate = this.birthdate?.getTime();
     console.log('user', this.user); 
+    this.loading = true;
     await addDoc(collection(this.firestore, 'users'), this.user.toJSON())
       .catch((err) => {
         console.error(err);
       })
       .then((result: any) => {
         console.log('Adding user finished', result);
+        this.dialogRef.close();
       });
+      this.loading = false;
   }
 
 
