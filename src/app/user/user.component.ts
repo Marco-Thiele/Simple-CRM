@@ -14,22 +14,22 @@ import { Observable } from 'rxjs';
 })
 export class UserComponent {
   user: User = new User();
-   item;
-   item$: Observable<any[]>;
+  item;
+  item$: Observable<any[]>;
   firestore: Firestore = inject(Firestore);
-  allUsers:any =[];
+  allUsers: any = [];
 
   constructor(public dialog: MatDialog) {
 
-        const itemCollection = collection(this.firestore, 'users');
-        this.item$ = collectionData(itemCollection ,{ idField: 'id'});
-        this.item = this.item$.subscribe((changes) => {
-            console.log('New user',changes);
-            this.allUsers = changes
-        })
-      }
-
-      openDialog(){
-      this.dialog.open(DialogAddUserComponent);
-    }
+    const itemCollection = collection(this.firestore, 'users');
+    this.item$ = collectionData(itemCollection, { idField: 'id' });
+    this.item = this.item$.subscribe((changes) => {
+      console.log('New user', changes);
+      this.allUsers = changes
+    })
   }
+
+  openDialog() {
+    this.dialog.open(DialogAddUserComponent);
+  }
+}
