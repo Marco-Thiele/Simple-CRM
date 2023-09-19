@@ -3,6 +3,8 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { Firestore, collectionData, collection, onSnapshot, doc, getDoc, updateDoc } from '@angular/fire/firestore';
 import { User } from 'src/models/user.class';
+import { SharedService } from '../shared.service';
+
 
 @Component({
   selector: 'app-dialog-edit-user',
@@ -18,7 +20,7 @@ export class DialogEditUserComponent {
   docSnap: any;
   id: any;
 
-  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>) {
+  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>,  private sharedService: SharedService) {
 
   }
 
@@ -27,9 +29,7 @@ export class DialogEditUserComponent {
     this.loading = true;
     this.docRef = doc(this.firestore, 'users', this.id);
     await updateDoc(this.docRef, this.user.toJSON())
-    .then((user:any)=>{
-      console.log('was bist du?', user)
-     // this.user = user
+    .then(()=>{
       this.loading = false;
       this.dialogRef.close();
     });

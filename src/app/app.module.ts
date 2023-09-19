@@ -27,6 +27,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
 import {MatMenuModule} from '@angular/material/menu';
 import { DialogEditAdressComponent } from './dialog-edit-adress/dialog-edit-adress.component';
 import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.component';
+import { SharedService } from './shared.service'; 
 
 
 @NgModule({
@@ -37,7 +38,7 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
     UserComponent,
     UserDetailComponent,
     DialogEditAdressComponent,
-    DialogEditUserComponent
+    DialogEditUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +58,7 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule,
+    
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFirestore(() => getFirestore())
   ],

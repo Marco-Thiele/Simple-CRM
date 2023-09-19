@@ -7,6 +7,7 @@ import { User } from 'src/models/user.class';
 import { MatDialog } from '@angular/material/dialog';
 import { DialogEditUserComponent } from '../dialog-edit-user/dialog-edit-user.component';
 import { DialogEditAdressComponent } from '../dialog-edit-adress/dialog-edit-adress.component';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-user-detail',
@@ -20,20 +21,32 @@ export class UserDetailComponent {
   docRef: any;
   docSnap: any;
   id: any;
+  items$;
+  items;
 
 
-  constructor(route: ActivatedRoute, public dialog: MatDialog) {
+  constructor(route: ActivatedRoute, public dialog: MatDialog, public sharedService: SharedService) {
     this.id = route.snapshot.params['id'];
     this.getUser(this.id)
+    this.user = this.sharedService.user;
+    this.items$ = collectionData(collection(this.firestore, 'users'))
+    this.items =this.items$.subscribe(()=>{
+      this.getUser(this.id)
+    })
   }
 
 
-  async getUser(id: string) {
+  async getUser(id:string) {
+  //  await this.sharedService.getUser(id);
+   
     this.docRef = doc(this.firestore, 'users', id);
     this.docSnap = await getDoc(this.docRef);
     this.user = new User(this.docSnap.data());
     console.log(this.user)
+    
   }
+
+  
 
 
   editUserDetail() {
