@@ -20,7 +20,7 @@ export class DialogEditUserComponent {
   docSnap: any;
   id: any;
 
-  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>,  private sharedService: SharedService) {
+  constructor(public dialogRef: MatDialogRef<DialogEditUserComponent>) {
 
   }
 

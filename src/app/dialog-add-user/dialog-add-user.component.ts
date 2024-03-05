@@ -4,8 +4,6 @@ import { inject } from '@angular/core';
 import { Firestore, collectionData, collection, doc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 import { addDoc } from 'firebase/firestore';
-import { getFirestore } from "firebase/firestore";
-import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { MatDialogRef } from '@angular/material/dialog';
 //import {MatDialogModule} from '@angular/material/dialog';
 

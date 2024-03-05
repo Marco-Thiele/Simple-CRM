@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DialogEditAdressComponent } from './dialog-edit-adress.component';
+import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
 describe('DialogEditAdressComponent', () => {
   let component: DialogEditAdressComponent;
@@ -8,7 +9,11 @@ describe('DialogEditAdressComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DialogEditAdressComponent]
+      imports: [MatDialogModule],
+      declarations: [DialogEditAdressComponent],
+      providers: [
+        { provide: MatDialogRef, useValue: {} },
+      ]
     });
     fixture = TestBed.createComponent(DialogEditAdressComponent);
     component = fixture.componentInstance;

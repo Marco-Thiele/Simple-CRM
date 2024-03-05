@@ -30,6 +30,9 @@ import { DialogEditUserComponent } from './dialog-edit-user/dialog-edit-user.com
 import { SharedService } from './shared.service'; 
 
 
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,9 +61,8 @@ import { SharedService } from './shared.service';
     MatProgressBarModule,
     MatCardModule,
     MatMenuModule,
-    
     provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideFirestore(() => getFirestore())
+    provideFirestore(() => getFirestore()),
   ],
   providers: [],
   bootstrap: [AppComponent]
