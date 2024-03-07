@@ -9,7 +9,7 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { DialogAddUserComponent } from './dialog-add-user/dialog-add-user.component';
 import { UserComponent } from './user/user.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
@@ -57,6 +57,7 @@ import { SharedService } from './shared.service';
     MatFormFieldModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    NoopAnimationsModule,
     FormsModule,
     MatProgressBarModule,
     MatCardModule,
